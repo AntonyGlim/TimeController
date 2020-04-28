@@ -1,0 +1,70 @@
+-- *for Windows
+-- \! chcp 1251
+
+-- *for Linux
+-- sudo -i -u postgres
+-- psql
+
+-- *new password for user postgres
+-- ALTER USER postgres PASSWORD 'admin';
+
+-- DROP SCHEMA IF EXISTS time_controller;
+-- CREATE SCHEMA time_controller;
+--
+-- SET search_path TO time_controller;
+
+DROP TABLE IF EXISTS tasks;
+CREATE TABLE tasks
+(
+    id              bigserial,
+    title           varchar(64) NOT NULL UNIQUE,
+    description     varchar(255),
+    type            varchar(16) NOT NULL UNIQUE,
+    user_id         int,
+
+    is_done         boolean,
+    is_active       boolean,
+    is_deleted      boolean,
+    is_in_archive   boolean,
+    is_canseled     boolean,
+
+    created_at      timestamp,
+    updated_at      timestamp,
+    deleted_at      timestamp,
+    started_at      timestamp,
+    total_time      timestamp,
+    until_time      timestamp,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id)
+        REFERENCES users (id),
+);
+-- SELECT * FROM tasks;
+
+
+DROP TABLE IF EXISTS tasks_dates;
+CREATE TABLE tasks_days
+(
+    task_id         bigserial NOT NULL,
+    day             date NOT NULL,
+    was_at_work     boolean,
+
+    PRIMARY KEY (task_id, day),
+    FOREIGN KEY (task_id)
+        REFERENCES tasks (id)
+);
+
+-- SELECT * FROM tasks_days;
+
+-- INSERT INTO roles (name)
+-- VALUES ('ROLE_USER'),
+--        ('ROLE_ADMIN');
+
+-- INSERT INTO users (phone, password, first_name, last_name, email)
+-- VALUES ('88888888', '$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i', 'Admin', 'Admin', 'admin@gmail.com');
+-- -- password 100
+
+-- INSERT INTO users_roles (user_id, role_id)
+-- VALUES (1, 1),
+--        (1, 2),
+--        (2, 1);
