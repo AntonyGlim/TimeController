@@ -1,19 +1,23 @@
 package glim.antony.timecontroller.controllers;
 
 import glim.antony.timecontroller.entities.Task;
+import glim.antony.timecontroller.entities.TimeUnit;
 import glim.antony.timecontroller.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@RestController
-@RequestMapping("/rest/v1/tasks")
-public class TaskRestController {
+@Controller
+@RequestMapping("/tasks")
+public class TaskController {
 
     private TaskService taskService;
 
@@ -22,10 +26,11 @@ public class TaskRestController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/") // http://192.168.1.62:8181/tc/rest/v1/tasks/
+    @GetMapping("/") // http://192.168.1.62:8181/tc/tasks/
     @ResponseStatus(HttpStatus.OK)
-    public List<Task> showTasks(){
-        return taskService.findAll();
+    public String showTasks(Model model){
+        model.addAttribute("timeUnit", new TimeUnit(LocalDateTime.now()));
+        return "index";
     }
 
 }
