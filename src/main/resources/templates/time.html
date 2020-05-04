@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <body>
+        <div th:fragment="time" class="text-center">
+            <p>
+                <span th:text="#{date.year}"/>
+                <span th:text="${timeUnit.getYear()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.month}"/>
+                <span th:text="${timeUnit.getMonth() + '/' + timeUnit.getLastMonthOfYear()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.week}"/>
+                <span th:text="${timeUnit.getWeek() + '/' + timeUnit.getLastWeekOfYear()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.day.of.month}"/>
+                <span th:text="${timeUnit.getDayOfMonth() + '/' + timeUnit.getLastDayOfMonth()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.day.of.week}"/>
+                <span th:text="${timeUnit.getDayOfWeek() + '/' + timeUnit.getLastDayOfWeek()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.day.of.year}"/>
+                <span th:text="${timeUnit.getDayOfYear() + '/' + timeUnit.getLastDayOfYear()}"/>
+                <span> | </span>
+
+                <span th:text="#{date.time}"/>
+                <span th:text="${timeUnit.getDateTime().toLocalTime().getHour() + ':' + timeUnit.getDateTime().toLocalTime().getMinute()}"/>
+            </p>
+        </div>
+    </body>
+</html>
