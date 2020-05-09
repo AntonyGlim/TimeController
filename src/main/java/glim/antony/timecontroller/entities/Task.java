@@ -2,6 +2,7 @@ package glim.antony.timecontroller.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "tasks")
 @Data
 @NoArgsConstructor
+//@TypeDef( typeClass = PostgreSQLIntervalType.class, defaultForType = Duration.class)
 public class Task implements Serializable {
     private static final long serialVersionUID = -9892325227711419L;
 
@@ -61,7 +63,7 @@ public class Task implements Serializable {
     private LocalDateTime startedAt;
 
     @Column(name = "total_time")
-    private Duration totalTime;
+    private Long totalTime; //TODO FIX [4] - type Duration
 
     @Column(name = "until_time")
     private LocalDateTime untilTime;

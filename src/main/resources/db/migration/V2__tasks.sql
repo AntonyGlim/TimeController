@@ -6,7 +6,7 @@ CREATE TABLE tasks
     id              bigserial,
     title           varchar(64) NOT NULL,
     description     varchar(255),
-    type            varchar(16),
+    type            varchar(16) DEFAULT 'THOUGHT',
     user_id         int NOT NULL,
 
     is_done         boolean DEFAULT false,
@@ -19,7 +19,7 @@ CREATE TABLE tasks
     updated_at      timestamp,
     deleted_at      timestamp,
     started_at      timestamp,
-    total_time      timestamp,
+    total_time      bigint,
     until_time      timestamp,
 
     PRIMARY KEY (id),
