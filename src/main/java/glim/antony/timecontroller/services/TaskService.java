@@ -21,9 +21,17 @@ public class TaskService {
         return (List<Task>) taskRepository.findAll();
     }
 
+    public Task findById(Long id) {
+        return taskRepository.findById(id).get();
+    }
+
+    public Task save(Task task){
+        return taskRepository.save(task);
+    }
+
     public void changeTaskStatus(Long id, String newStatus) {
         Task task = taskRepository.findOneById(id);
         task.setType(Task.Type.valueOf(newStatus));
-        taskRepository.save(task);
+        save(task);
     }
 }

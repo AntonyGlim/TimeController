@@ -33,7 +33,7 @@ public class Task implements Serializable {
     private Type type;
 
     @Column(name = "user_id")
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "is_done")
     private Boolean isDone;
