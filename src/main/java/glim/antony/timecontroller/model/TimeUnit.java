@@ -1,4 +1,4 @@
-package glim.antony.timecontroller.entities;
+package glim.antony.timecontroller.model;
 
 import lombok.Getter;
 import lombok.Setter;

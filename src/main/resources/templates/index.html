@@ -62,28 +62,22 @@
 					<tr>
 						<th>ID</th>
 						<th>Название задачи</th>
-						<th>Описание</th>
-						<th>Дата создание</th>
-						<th>Статус</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
+						<th>Кнопка</th>
+						<th>Кубики</th>
+						<th>E</th>
+						<th>D</th>
 					</tr>
 					</thead>
 					<tbody>
 					<tr th:each="task : ${tasks}" th:if="${task.getType().toString()} == 'DAILY_CHECK_TASK'">
 						<td th:text="${task.getId()}"/>
-						<td th:text="${task.getTitle()}"/>
-						<td th:text="${task.getDescription()}"/>
-						<td th:text="${#temporals.format(task.getCreatedAt(), 'dd.MM.yyyy HH:mm')}"/>
-						<td th:text="${task.getType()}"/>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=DAILY_CHECK_TASK'}">DCT</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=USEFUL_PROJECT'}">USP</a></td>
-						<td><a type="button" class="btn btn-danger" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=UNUSEFUL_PROJECT'}">UNUSP</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=BACKWARD_TIMER'}">BT</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=PLAN'}">PLAN</a></td>
+						<td th:text="${task.getTitle()}" th:title="${task.getDescription()}"/>
+
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/usefulness?id=' + ${task.getId()} + '&usefulness=true'}">YES</a></td>
+
+						<td><span th:each="usefulDCTask : ${usefulDCTasks}" th:if="${task.getId() == usefulDCTask.getTaskId()}" th:text="${usefulDCTask.getUseful() + ' '}"/></td>
+						<td><a type="button" class="btn btn-danger" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=UNUSEFUL_PROJECT'}">E</a></td>
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=BACKWARD_TIMER'}">D</a></td>
 					</tr>
 					</tbody>
 				</table>
@@ -236,6 +230,30 @@
 					</tbody>
 				</table>
 				<a type="button" class="btn btn-success btn-lg btn-block" th:text="#{utils.add.plan}" th:href="@{/tasks/edit}"></a>
+			</div>
+
+			<br>
+
+			<div style="background-color: aliceblue">
+				<h2>CALENDAR</h2>
+				<table class="table table-hover">
+					<thead class="thead-light">
+					<tr>
+						<th>ID</th>
+						<th>ID User</th>
+						<th>Дата</th>
+						<th>Статус</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="usefulDate : ${usefulDates}">
+						<td th:text="${usefulDate.getId()}"/>
+						<td th:text="${usefulDate.getUserId()}"/>
+						<td th:text="${#temporals.format(usefulDate.getDate(), 'dd.MM.yyyy')}"/>
+						<td th:text="${usefulDate.getUseful()}"/>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 
 			<div th:replace="~{footer::footer}"/>

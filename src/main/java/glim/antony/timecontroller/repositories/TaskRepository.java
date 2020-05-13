@@ -1,6 +1,6 @@
 package glim.antony.timecontroller.repositories;
 
-import glim.antony.timecontroller.entities.Task;
+import glim.antony.timecontroller.model.entities.Task;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

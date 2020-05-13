@@ -1,6 +1,6 @@
 package glim.antony.timecontroller.services;
 
-import glim.antony.timecontroller.entities.Task;
+import glim.antony.timecontroller.model.entities.Task;
 import glim.antony.timecontroller.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

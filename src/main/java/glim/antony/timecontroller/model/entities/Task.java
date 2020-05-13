@@ -1,12 +1,10 @@
-package glim.antony.timecontroller.entities;
+package glim.antony.timecontroller.model.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Entity
