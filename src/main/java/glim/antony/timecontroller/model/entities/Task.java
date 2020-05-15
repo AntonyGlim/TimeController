@@ -66,6 +66,10 @@ public class Task implements Serializable {
     @Column(name = "until_time")
     private LocalDateTime untilTime;
 
+    @Column(name = "plan_period")
+    @Enumerated(EnumType.STRING)
+    private PlanPeriod planPeriod;
+
     //TODO THINK about statuses
     public enum Status {
         NEW,
@@ -82,6 +86,15 @@ public class Task implements Serializable {
         BACKWARD_TIMER,
         THOUGHT,
         PLAN
+    }
+
+    public enum PlanPeriod {
+        THIS_WEEK,
+        THIS_MONTH,
+        THIS_YEAR,
+        THREE_YEARS,
+        FIVE_YEARS,
+        TEN_YEARS
     }
 
 }
