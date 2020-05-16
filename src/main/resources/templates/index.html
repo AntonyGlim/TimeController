@@ -106,11 +106,11 @@
 						<td th:text="${task.getTitle()}" th:title="${task.getDescription()}"/>
 						<td/>
 						<td th:text="${task.getTotalTime()}"/>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=DAILY_CHECK_TASK'}">R</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=USEFUL_PROJECT'}">P</a></td>
-						<td><a type="button" class="btn btn-danger" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=UNUSEFUL_PROJECT'}">S</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=BACKWARD_TIMER'}">E</a></td>
-						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/change/status?id=' + ${task.getId()} + '&newStatus=PLAN'}">D</a></td>
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.getId()} + '&newStatus=DAILY_CHECK_TASK'}">R</a></td>
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.getId()} + '&newStatus=USEFUL_PROJECT'}">P</a></td>
+						<td><a type="button" class="btn btn-danger" th:href="@{'/tasks/edit?id=' + ${task.getId()} + '&newStatus=UNUSEFUL_PROJECT'}">S</a></td>
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.getId()}}">E</a></td>
+						<td><a type="button" class="btn btn-success" th:href="@{'/tasks/edit?id=' + ${task.getId()} + '&newStatus=PLAN'}">D</a></td>
 					</tr>
 					</tbody>
 				</table>

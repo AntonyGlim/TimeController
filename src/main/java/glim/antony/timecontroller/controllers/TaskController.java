@@ -10,6 +10,7 @@ import glim.antony.timecontroller.services.UsefulDCTaskService;
 import glim.antony.timecontroller.services.UsefulDateService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -84,8 +85,8 @@ public class TaskController {
     public String processAddOrEdit(
             @ModelAttribute("task") Task task
     ) {
+        log.info("[i] Task type: {}", task.getType());
         task.setUserId(1L);
-        task.setType(Task.Type.THOUGHT);
         taskService.save(task);
         return "redirect:/tasks/";
     }
